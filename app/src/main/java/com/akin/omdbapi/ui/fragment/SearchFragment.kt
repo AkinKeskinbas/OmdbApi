@@ -34,18 +34,17 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             @RequiresApi(Build.VERSION_CODES.O)
             override fun onQueryTextSubmit(query: String?): Boolean {
-                list.clear()
-                if (query?.length!! > 2) {
-                    getMoviesData(query)
-                    hideKeyboard()
-                }
+
+                getMoviesData(query!!)
+                hideKeyboard()
+
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
 
                 if (newText.isNullOrEmpty()) {
-                   setUiBeforeSearch()
+                    setUiBeforeSearch()
 
                 } else {
                     binding.apply {
@@ -60,13 +59,13 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
 
     }
 
-    private fun getMoviesData(title:String){
-        searchViewModel.getMoviesByQuery(title).observe(viewLifecycleOwner,{response->
-            when(response.status){
+    private fun getMoviesData(title: String) {
+        searchViewModel.getMoviesByQuery(title).observe(viewLifecycleOwner, { response ->
+            when (response.status) {
                 Resource.Status.LOADING -> {
-                   setLoadingUi()
+                    setLoadingUi()
                 }
-                Resource.Status.SUCCESS ->{
+                Resource.Status.SUCCESS -> {
                     setSuccessUi()
                     searchAdapter.loadAnimeData(response.data?.Search!!)
 
@@ -92,34 +91,45 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         findNavController().navigate(action)
     }
 
-    private fun setLoadingUi(){
+    private fun setLoadingUi() {
         binding.apply {
             progressCircular.visibility = View.VISIBLE
+            progressCircular.playAnimation()
             emptyText.visibility = View.GONE
             emptyText2.visibility = View.GONE
             rcSearch.visibility = View.GONE
-           // lottieError.gone()
+            // lottieError.gone()
         }
 
     }
-   private fun setSuccessUi(){
+
+    private fun setSuccessUi() {
         binding.apply {
             progressCircular.visibility = View.GONE
+            errorImage.visibility = View.GONE
             rcSearch.visibility = View.VISIBLE
+            progressCircular.cancelAnimation()
         }
 
     }
-    private fun setErrorUi(errorMessage: String){
-        //  binding.lottieError.show()
-        binding.progressCircular.visibility = View.VISIBLE
+
+    private fun setErrorUi(errorMessage: String) {
+
+        binding.apply {
+            errorImage.visibility = View.VISIBLE
+            progressCircular.visibility = View.GONE
+            errorImage.playAnimation()
+        }
+
         Log.d("error", errorMessage)
     }
 
-    private fun setUiBeforeSearch(){
+    private fun setUiBeforeSearch() {
         binding.apply {
             emptyText.visibility = View.VISIBLE
             emptyText2.visibility = View.VISIBLE
             rcSearch.visibility = View.GONE
+            errorImage.visibility = View.GONE
         }
     }
 

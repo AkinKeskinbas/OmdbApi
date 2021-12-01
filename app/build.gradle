@@ -56,7 +56,6 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:4.9.1"
 
     //coroutines
-
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
@@ -83,6 +82,10 @@ dependencies {
     // Hilt
     implementation("com.google.dagger:hilt-android:2.38.1")
     kapt("com.google.dagger:hilt-android-compiler:2.38.1")
+
+    //Lottie
+    def lottie_version = "4.1.0"
+    implementation "com.airbnb.android:lottie:$lottie_version"
 
 }
 kapt {
