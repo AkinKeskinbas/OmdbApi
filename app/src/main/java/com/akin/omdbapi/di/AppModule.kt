@@ -1,6 +1,8 @@
 package com.akin.omdbapi.di
 
+import com.akin.omdbapi.data.api.ApiDataSource
 import com.akin.omdbapi.data.api.ApiService
+import com.akin.omdbapi.domain.DetailRepository
 import com.akin.omdbapi.domain.SearchRepository
 import com.akin.omdbapi.util.Statics.BASE_URL
 import dagger.Module
@@ -15,10 +17,14 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
+
+
     @Provides
-    fun provideSearchRepository(
+    fun provideApiDataSource(
         apiService: ApiService
-    ) = SearchRepository(apiService)
+    ): ApiDataSource {
+        return ApiDataSource(apiService)
+    }
 
     @Provides
     @Singleton
