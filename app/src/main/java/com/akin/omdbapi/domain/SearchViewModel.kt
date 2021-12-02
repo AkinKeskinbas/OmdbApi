@@ -22,7 +22,7 @@ class SearchViewModel @Inject constructor(
 ) : ViewModel() {
 
     var pageNumber = 1
-    fun getMoviesByQuery(title: String): LiveData<Resource<SearchModel>>{
-        return searchRepository.searchMoviesByName(title,pageNumber)
+    fun getMoviesByQuery(title: String): LiveData<Resource<SearchModel>> {
+        return searchRepository.searchMoviesByName(title, pageNumber)
     }
 }

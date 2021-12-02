@@ -1,8 +1,8 @@
 package com.akin.omdbapi.ui.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.MotionLayout
 import com.akin.omdbapi.databinding.ActivitySplashBinding
 

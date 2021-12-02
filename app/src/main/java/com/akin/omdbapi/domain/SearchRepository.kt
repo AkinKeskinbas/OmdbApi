@@ -13,11 +13,11 @@ import kotlin.math.log
 
 
 class SearchRepository @Inject constructor(
-    private val api:ApiDataSource
+    private val api: ApiDataSource
 ) {
-    fun searchMoviesByName(title: String,page: Int) = performNetworkOperation {
+    fun searchMoviesByName(title: String, page: Int) = performNetworkOperation {
 
-        api.searchMoviesByName(title,page)
+        api.searchMoviesByName(title, page)
     }
 
 

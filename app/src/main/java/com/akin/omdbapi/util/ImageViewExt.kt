@@ -5,16 +5,8 @@ import android.widget.ImageView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.akin.omdbapi.R
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 
-fun ImageView.loadInt(imgUrl: Int) {
-    Glide.with(context)
-        .load(imgUrl)
-        .circleCrop()
-        .into(this)
-
-}
 
 fun ImageView.loadString(imgUrl: String?, placeholder: CircularProgressDrawable) {
     val options = RequestOptions().placeholder(placeholder).error(R.mipmap.ic_launcher_round)
@@ -26,15 +18,6 @@ fun ImageView.loadString(imgUrl: String?, placeholder: CircularProgressDrawable)
 
 }
 
-fun ImageView.loadStringForDetailPage(imgUrl: String?, placeholder: CircularProgressDrawable) {
-    val options = RequestOptions().placeholder(placeholder).error(R.mipmap.ic_launcher_round)
-    Glide.with(context)
-        .setDefaultRequestOptions(options)
-        .load(imgUrl)
-        .centerCrop()
-        .into(this)
-
-}
 
 fun makePlaceHolder(context: Context): CircularProgressDrawable {
     return CircularProgressDrawable(context).apply {

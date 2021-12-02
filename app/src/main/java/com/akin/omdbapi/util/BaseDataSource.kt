@@ -12,7 +12,7 @@ abstract class BaseDataSource {
             if (response.isSuccessful) {
                 val body = response.body()
                 val successCallError = SearchModel("False", null, null)
-                return if (body != null && !body.equals(successCallError) ) {
+                return if (body != null && !body.equals(successCallError)) {
                     Resource.success(body)
                 } else {
                     Resource.error("Opps, Somethings went wrong!")

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.akin.omdbapi.data.model.Search
-import com.akin.omdbapi.data.model.SearchModel
 import com.akin.omdbapi.databinding.SearchItemBinding
 import com.akin.omdbapi.util.loadString
 import com.akin.omdbapi.util.makeBigger
@@ -23,7 +22,10 @@ class SearchAdapter(var clickListener: (data: Search) -> Unit = {}) :
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchAdapter.HomeViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): SearchAdapter.HomeViewHolder {
         val binding =
             SearchItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 

@@ -2,15 +2,12 @@ package com.akin.omdbapi.ui.fragment
 
 import android.os.Build
 import android.os.Bundle
-import android.os.Message
-import android.util.Log
 import android.view.View
 import android.widget.SearchView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.akin.omdbapi.data.Resource
-import com.akin.omdbapi.data.model.Search
 import com.akin.omdbapi.databinding.FragmentSearchBinding
 import com.akin.omdbapi.domain.SearchViewModel
 import com.akin.omdbapi.ui.adapter.SearchAdapter

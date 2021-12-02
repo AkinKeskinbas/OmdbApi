@@ -17,7 +17,7 @@ class DetailViewModel @Inject constructor(
     private val detailRepository: DetailRepository
 ) : ViewModel() {
 
-    fun searchMovieById(imdbId: String): LiveData<Resource<DetailModel>>{
+    fun searchMovieById(imdbId: String): LiveData<Resource<DetailModel>> {
         return detailRepository.searchMovieByImdbId(imdbId)
     }
 }
