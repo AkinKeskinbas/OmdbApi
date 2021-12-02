@@ -1,5 +1,6 @@
 package com.akin.omdbapi.ui.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -23,9 +24,9 @@ import dagger.hilt.android.scopes.ActivityScoped
 
 
 @AndroidEntryPoint
-class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding:: inflate) {
+class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding::inflate) {
     private val detailViewModel: DetailViewModel by viewModels()
-     private val args: DetailFragmentArgs by navArgs()
+    private val args: DetailFragmentArgs by navArgs()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -34,22 +35,24 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
     }
 
 
-    private fun getMoviesData(){
-        detailViewModel.searchMovieById(args.imdbId).observe(viewLifecycleOwner,{response->
-            when(response.status){
+    private fun getMoviesData() {
+        detailViewModel.searchMovieById(args.imdbId).observe(viewLifecycleOwner, { response ->
+            when (response.status) {
                 Resource.Status.LOADING -> {
                     setLoadingUi()
                 }
-                Resource.Status.SUCCESS ->{
+                Resource.Status.SUCCESS -> {
                     val biggerImage = response.data?.Poster?.makeBigger()
-                    response.data?.Title?.let {
-                        setSuccessUi(
-                            it,
-                            biggerImage.toString(),
-                            response.data.Genre,
-                            response.data.Plot
-                        )
-                    }
+                    setSuccessUi(
+                        response.data?.Title.toString(),
+                        biggerImage.toString(),
+                        response.data?.Genre.toString(),
+                        response.data?.Plot.toString(),
+                        response.data?.imdbRating.toString(),
+                        response.data?.Writer.toString(),
+                        response.data?.Actors.toString(),
+                        response.data?.Released.toString(),
+                    )
 
                 }
                 Resource.Status.ERROR -> {
@@ -63,20 +66,34 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
         println(errorMessage)
     }
 
-    private fun setSuccessUi(name:String,image:String,genres:String,detail:String) {
+    @SuppressLint("SetTextI18n")
+    private fun setSuccessUi(
+        name: String,
+        image: String,
+        genres: String,
+        detail: String,
+        rating: String,
+        writer: String,
+        actors: String,
+        released:String
+    ) {
         binding.apply {
             progressCircular.visibility = View.GONE
             cardMovieNameDetail.text = name
             genresText.text = genres
             detailImage.loadString(image, makePlaceHolder(requireContext()))
+            ratingText.text = "Rating: $rating"
+            writerText.text = "Writer: $writer"
+            actorsText.text = "Actors: $actors"
+            releasedText.text = "Released: $released"
             BottomSheetBehavior.from(binding.bottomSheet).apply {
-                peekHeight =100
+                peekHeight = 100
                 this.state = BottomSheetBehavior.STATE_COLLAPSED
             }
             plotText.text = detail
             showDetailsButton.setOnClickListener {
                 BottomSheetBehavior.from(binding.bottomSheet).apply {
-                    if (this.state!=BottomSheetBehavior.STATE_EXPANDED){
+                    if (this.state != BottomSheetBehavior.STATE_EXPANDED) {
                         this.state = BottomSheetBehavior.STATE_EXPANDED
                     }
 

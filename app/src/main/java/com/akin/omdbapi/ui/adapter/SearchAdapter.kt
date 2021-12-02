@@ -40,7 +40,7 @@ class SearchAdapter(var clickListener: (data: Search) -> Unit = {}) :
                 makePlaceHolder(holder.binding.root.context)
             )
             cardAnimeName.text = animeListPositioned.Title
-            cardAnimeEpisode.text = "Yil- ${animeListPositioned.Year}"
+            cardAnimeEpisode.text = animeListPositioned.Type.uppercase()
             cardHome.setOnClickListener {
                 clickListener(animeListPositioned)
 

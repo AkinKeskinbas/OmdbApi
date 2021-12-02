@@ -20,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate) {
-    private val list: ArrayList<Search> by lazy { arrayListOf() }
+
     private val searchViewModel: SearchViewModel by viewModels()
     private val searchAdapter = SearchAdapter()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -71,7 +71,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
 
                 }
                 Resource.Status.ERROR -> {
-                    setErrorUi(response.message.toString())
+                    setErrorUi()
                 }
             }
         })
@@ -98,7 +98,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
             emptyText.visibility = View.GONE
             emptyText2.visibility = View.GONE
             rcSearch.visibility = View.GONE
-            // lottieError.gone()
+
         }
 
     }
@@ -113,7 +113,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
 
     }
 
-    private fun setErrorUi(errorMessage: String) {
+    private fun setErrorUi() {
 
         binding.apply {
             errorImage.visibility = View.VISIBLE
@@ -121,7 +121,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
             errorImage.playAnimation()
         }
 
-        Log.d("error", errorMessage)
     }
 
     private fun setUiBeforeSearch() {

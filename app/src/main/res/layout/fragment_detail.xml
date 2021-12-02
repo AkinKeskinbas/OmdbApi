@@ -14,13 +14,13 @@
         android:elevation="5dp">
 
         <FrameLayout
-            tools:visibility="gone"
             android:id="@+id/bottom_sheet"
             android:layout_width="match_parent"
             android:layout_height="450dp"
             android:background="@drawable/rounded"
             app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:visibility="visible">
 
             <ScrollView
 
@@ -56,6 +56,46 @@
                         tools:text="Movie Name" />
 
                     <TextView
+                        android:id="@+id/ratingText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:textColor="@color/white"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/nameText"
+                        tools:text="Rating" />
+
+                    <TextView
+                        android:id="@+id/writerText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:textColor="@color/white"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ratingText"
+                        tools:text="Writer" />
+
+                    <TextView
+                        android:id="@+id/releasedText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:textColor="@color/white"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/writerText"
+                        tools:text="Released" />
+
+                    <TextView
+                        android:id="@+id/actorsText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:textColor="@color/white"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/releasedText"
+                        tools:text="Actors" />
+
+                    <TextView
                         android:id="@+id/plotText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -79,7 +119,7 @@
                         android:text="Plot:"
                         android:textColor="@color/white"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/nameText" />
+                        app:layout_constraintTop_toBottomOf="@+id/actorsText" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
